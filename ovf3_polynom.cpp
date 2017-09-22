@@ -15,24 +15,23 @@ double pol(double x){
 int main(){
 	int n;
 	double a, b, c;
-	c = 0;
-
-
+	
 	std::cout << "Enter region:" << std::endl << "a = ";
 	std::cin >> a;
 	std::cout <<  "b = ";
 	std::cin >> b;
 
 	n = pres(a, b, 0.001);
-
-	for (int i = 0; i < n; i++){
-		if (((pol(a)*pol(c) > 0) && (pol(b)*pol(c) > 0))){
+	
+	c = (a + b) / 2;
+	
+	if (((pol(a)*pol(c) > 0) && (pol(b)*pol(c) > 0))){
 			std::cout << "NO ROOTS!" << std::endl;
 			break;
-		} 
-
-		c = (a + b) / 2;
-		
+	}
+	
+	for (int i = 0; i < n; i++){
+		 
 		if (pol(a)*pol(c) > 0){
 			a = c;
 		}
@@ -41,6 +40,7 @@ int main(){
 				b = c;
 			}
 		}
+		c = (a + b) / 2;
 	}
 
 	std::cout << "a = " << a << "; b = " << b << std::endl << "ans = " << (a + b) / 2 << std::endl;
