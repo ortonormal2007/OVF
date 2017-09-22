@@ -4,7 +4,6 @@
 int pres(double a, double b, double eps){
 	double n;
 	n = (log(((b - a) / eps)) / log(2)) - 1;
-	std::cout << "n = " << (int)n << std::endl;
 	return (int)n;
 }
 
@@ -27,29 +26,31 @@ void dycho(double (*func)(double)){
 	int n = pres(a, b, 0.001);
 	
 	c = (a + b) / 2;
-	for (int i = 0; i < n; i++){
-		if (((func(a)*func(c) > 0) && (func(b)*func(c) > 0))){
-			std::cout << "NO ROOTS!" << std::endl;
-			break;
-		}
-		c = (a + b) / 2;
-
-		if (func(a)*func(c) > 0){
-			a = c;
+	
+	if (((func(a)*func(c) > 0) && (func(b)*func(c) > 0))){
+			std::cout << "NO ROOTS in the region!" << std::endl;
 		}
 		else {
-			if (func(b)*func(c) > 0){
-				b = c;
-			}
-		}
-	}
+	for (int i = 0; i < n; i++){
+		
+			c = (a + b) / 2;
 
-	std::cout << "a = " << a << "; b = " << b << std::endl << "ans = " << (a + b) / 2 << std::endl;
+			if (func(a)*func(c) > 0){
+				a = c;
+			}
+			else {
+				if (func(b)*func(c) > 0){
+					b = c;
+				}
+			}
+			
+		
+	}
+std::cout << "a = " << a << "; b = " << b << std::endl << "n = " << (int)n << std::endl << "ans = " << (a + b) / 2 << std::endl;
+	}
 }
 
 int main(){
-
-	
 	size_t var;
 
 	while (true){
