@@ -2,13 +2,10 @@
 #include <cmath>
 
 int pres(double a, double b, double eps){
-	int n;
-
+	double n;
 	n = (log(((b - a) / eps)) / log(2)) - 1;
-
-	std::cout << "n = " << n << std::endl;
-
-	return n;
+	std::cout << "n = " << (int)n << std::endl;
+	return (int)n;
 }
 
 double pol(double x){
@@ -26,17 +23,11 @@ int main(){
 	std::cout <<  "b = ";
 	std::cin >> b;
 
-
-	//a = -5;
-	//b = 5;
-	
-	
 	n = pres(a, b, 0.001);
 
 	for (int i = 0; i < n; i++){
-		if (((pol(a)*pol(c) && pol(b)*pol(c)) > 0)){
+		if (((pol(a)*pol(c) > 0) && (pol(b)*pol(c) > 0))){
 			std::cout << "NO ROOTS!" << std::endl;
-			
 			break;
 		} 
 
