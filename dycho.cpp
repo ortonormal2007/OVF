@@ -15,40 +15,43 @@ double bar(double x){
 	return tan(x) - x;
 }
 
-void dycho(double (*func)(double)){
+void dycho(double(*func)(double)){
 	double a, b, c;
-	
+	a = 0; 
+	b = 0;
+	c = 0;
 	std::cout << "Enter region:" << std::endl << "a = ";
 	std::cin >> a;
 	std::cout << "b = ";
 	std::cin >> b;
 
 	int n = pres(a, b, 0.001);
-	
-	c = (a + b) / 2;
-	
-	if (((func(a)*func(c) > 0) && (func(b)*func(c) > 0))){
-			std::cout << "NO ROOTS in the region!" << std::endl;
-		}
-		else {
-	for (int i = 0; i < n; i++){
-		
-			c = (a + b) / 2;
 
-			if (func(a)*func(c) > 0){
-				a = c;
+	//c = (a + b) / 2;
+
+	/*if (((func(a)*func(c) > 0) && (func(b)*func(c) > 0))){
+		std::cout << "NO ROOTS in the region!" << std::endl;
+	}*/
+	//else {
+		
+	//for (int i = 0; i < n; i++){
+	while ( abs(a - b) > 0.00001)
+	{
+	c = (a + b) / 2;
+			if (func(a)*func(c) <= 0){
+				b = c;
 			}
 			else {
-				if (func(b)*func(c) > 0){
-					b = c;
+				if (func(b)*func(c) <= 0){
+					a = c;
 				}
 			}
-			
-		
+		}
+		std::cout << "a = " << a << "; b = " << b << std::endl << "n = " << (int)n << std::endl << "ans = " << (a + b) / 2 << std::endl;
+		printf("%.5f", (a + b) / 2);
+		printf("%.5f", c);
 	}
-std::cout << "a = " << a << "; b = " << b << std::endl << "n = " << (int)n << std::endl << "ans = " << (a + b) / 2 << std::endl;
-	}
-}
+//}
 
 int main(){
 	size_t var;
