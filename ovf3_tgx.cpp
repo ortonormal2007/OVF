@@ -23,14 +23,14 @@ double simp_iter(double(*func)(double), double eps, double lam, double n){
 	z = 0;
 	z0 = (n + 1.) * PI - (PI / 2.0);
 	if (deriv2(z0) > 0){
-		z0 = z0 - 0.03;
+		z0 = z0 - 0.001;
 	}
 	if (deriv2(z0) < 0){
-		z0 = z0 + 0.03;
+		z0 = z0 + 0.001;
 	}
 	while (abs(z - z0) > eps){
 		z = z0;
-		z0 = z - (func(z)/lam);
+		z0 = z - (func(z) / lam);
 	}
 	return z0;
 }
@@ -59,8 +59,8 @@ double newton(double(*func)(double), double(*deriv)(double), double(*deriv2)(dou
 int main(){
 	double n = 0;
 	std::cin >> n;
-	printf("%.5f\n", simp_iter(func, 0.001, 20, 1));
-	printf("%.5f\n", newton(func, deriv, deriv2, 0.001, n));
+	printf("%.15f\n", simp_iter(func, 1e-15, 1000, n));
+	printf("%.15f\n", newton(func, deriv, deriv2, 1e-15, n));
 	//secant();
 	return 0;
 }
