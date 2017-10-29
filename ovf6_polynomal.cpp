@@ -44,11 +44,13 @@ int main(){
 
 	ofstream grinter("poly.txt");
 	ofstream grfunc("func.txt");
+	ofstream grdiff("diff.txt");
 	ofstream grpoint("points.txt");
 	double *ppnts = pnts(rdx);
 	while (a <= b){
 		grinter << a << "\t" << poly(func, ppnts, rdx, a) << endl;
 		grfunc << a << "\t" << func(a) << endl;
+		grdiff << a << "\t" << abs(poly(func, ppnts, rdx, a) - func(a)) << endl;
 		a += 0.1;
 	}
 	for (int i = 0; i <= rdx; i++){
