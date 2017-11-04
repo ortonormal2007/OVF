@@ -6,6 +6,7 @@
 
 using namespace std;
 
+
 double *pnts(int n){
 	double *pnt = new double[n + 1];
 	for (int i = 0; i <= n; i++){
