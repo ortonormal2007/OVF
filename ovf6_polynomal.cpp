@@ -30,6 +30,7 @@ double funcrun(double x){
 	return (1 / ((1. + 25. * x * x)));
 }
 
+
 double poly(double(*func)(double), double *pnt, int rdx, double x){
 	double P = 0;
 	double L;
