@@ -29,14 +29,16 @@ void rungekutta(double xinit, double tinit, double tfinal, double step, double(*
 	integ_line1 = fopen("integralRK1.txt", "w");
 	int n = 1;
 	double x_next = 0;
+	
+	//WHY TOO MANY VARS???
 	double x_cur = xinit;
-	fprintf(integ_line1, "%g\t%.20f\n", tinit, xinit);
 	double t_cur = tinit;
+	fprintf(integ_line1, "%g\t%.20f\n", tinit, xinit);
 	while (t_cur <= tfinal){
 		x_next = x_cur + step * (0.25 * right(x_cur, t_cur) + 0.75 * right(x_cur + ((2. / 3.) * step * right(x_cur, t_cur)), t_cur + ((2. / 3.) * step)));
 		x_cur = x_next;
 		fprintf(integ_line1, "%g\t%.20f\n", t_cur, x_cur);
-		t_cur = step*n;
+		t_cur = tinit + step*n;
 		n++;
 	}
 	fclose(integ_line1);
