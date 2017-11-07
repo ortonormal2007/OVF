@@ -12,6 +12,8 @@ void euler(double xinit, double tinit, double tfinal, double step, double(*right
 	int n = 1;
 	double x_next = 0;
 	double x_cur = xinit;
+	
+	//FIX ENUMERATION
 	fprintf(integ_line, "%g\t%.20f\n", tinit, xinit);
 	double t_cur = tinit;
 	while (t_cur <= tfinal){
@@ -33,6 +35,8 @@ void rungekutta(double xinit, double tinit, double tfinal, double step, double(*
 	//WHY TOO MANY VARS???
 	double x_cur = xinit;
 	double t_cur = tinit;
+	
+	//FIX ENUMERATION
 	fprintf(integ_line1, "%g\t%.20f\n", tinit, xinit);
 	while (t_cur <= tfinal){
 		x_next = x_cur + step * (0.25 * right(x_cur, t_cur) + 0.75 * right(x_cur + ((2. / 3.) * step * right(x_cur, t_cur)), t_cur + ((2. / 3.) * step)));
