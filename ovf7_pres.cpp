@@ -19,7 +19,7 @@ double euler(double xinit, double tinit, double tfinal, double step, double(*rig
 	double x_next = 1;
 	double x_cur = xinit;
 	double t_cur = tinit + step;
-
+	double tmax = tinit;
 	double dif = 0;
 	double maxdif = fabs(xinit - ans(tinit));
 	//fprintf(integ_line, "%g\t%.20f\n", tinit, xinit);
@@ -32,12 +32,14 @@ double euler(double xinit, double tinit, double tfinal, double step, double(*rig
 		dif = fabs(x_cur - ans(t_cur));
 		if (dif > maxdif){
 			maxdif = dif;
+			tmax = t_cur;
 		}
 		//printf("%g\t%.20f\n", t_cur, dif);
 		n++;
 		t_cur = tinit + step*n;
 	}
 	//fclose(integ_line);
+	printf("%g   ", tmax);
 	return maxdif;
 }
 
@@ -49,6 +51,7 @@ double rungekutta(double xinit, double tinit, double tfinal, double step, double
 	double t_cur = tinit + step;
 	double dif = 0;
 	double maxdif = fabs(xinit - ans(tinit));
+	double tmax = tinit;
 	//fprintf(integ_line1, "%g\t%.20f\n", tinit, xinit);
 	while (t_cur <= tfinal){
 		x_next = xinit + step * (0.25 * right(xinit, t_cur) + 0.75 * right(xinit + ((2. / 3.) * step * right(xinit, t_cur)), t_cur + ((2. / 3.) * step)));
@@ -56,13 +59,14 @@ double rungekutta(double xinit, double tinit, double tfinal, double step, double
 		dif = fabs(xinit - ans(t_cur));
 		if (dif > maxdif){
 			maxdif = dif;
+			tmax = t_cur;
 		}
 		//fprintf(integ_line1, "%g\t%.20f\n", t_cur, xinit);
 		n++;
 		t_cur = tinit + step*n;
 	}
 	//fclose(integ_line1);
-
+	printf("%g   ", tmax);
 	return maxdif;
 }
 
