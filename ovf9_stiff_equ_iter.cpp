@@ -28,15 +28,15 @@ void substanded(double x, double y, double h, double tfinal){
 	while (t_cur <= tfinal){
 
 		//FIRST ITERATION FROM VALUE OF PREV POINT
-		x_next = x - ((x - right1(x, y) - x));
-		y_next = y - ((y - right2(x, y) - y));
+		x_next = x - ((x - right1(x, y) - x)/1000);
+		y_next = y - ((y - right2(x, y) - y)/1000);
 
 		//SIMPLE ITERATIONS PROCESS
 		while ((abs(x_next - x0) > 0.001) || (abs(y_next - y0) > 0.001)){
 			x0 = x_next;
 			y0 = y_next;
-			x_next = x0 - ((x0 - right1(x0, y0) - x));
-			y_next = y0 - ((y0 - right2(x0, y0) - y));
+			x_next = x0 - ((x0 - right1(x0, y0) - x)/1000);
+			y_next = y0 - ((y0 - right2(x0, y0) - y)/1000);
 
 		}
 
